@@ -1,6 +1,5 @@
 /* 
- *  TML/SIDEX:  A BEEP based TML/SIDEX communication and data
- *  serialization library.
+ *  libTML:  A BEEP based Messaging Suite
  *  Copyright (C) 2015 wobe-systems GmbH
  *
  *  This program is free software; you can redistribute it and/or
@@ -17,25 +16,22 @@
  *  License along with this program; if not, write to the Free
  *  Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
  *  02111-1307 USA
- *  
+ *
  *  You may find a copy of the license under this software is released
  *  at COPYING file. This is LGPL software: you are welcome to develop
  *  proprietary applications using this library without any royalty or
  *  fee but returning back any change, improvement or addition in the
  *  form of source code, project image, documentation patches, etc.
  *
- *  For commercial support on build UJO enabled solutions contact us:
- *          
- *      Postal address:
- *         wobe-systems GmbH
- *         Wittland 2-4
- *         24109 Kiel
- *         Germany
+ *  Homepage:
+ *    http://www.libtml.org
  *
- *      Email address:
- *         info@tml-software.com - http://www.tml-software.com
+ *  For professional support contact us:
+ *
+ *    wobe-systems GmbH
+ *    support@libtml.org
  */
-
+ 
 #ifndef _SIDEX_MOD_H
 #define _SIDEX_MOD_H
 
