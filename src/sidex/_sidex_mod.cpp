@@ -1066,7 +1066,7 @@ static PyObject * _sidex_Variant_New_DateTime(PyObject *self, PyObject *args)
             PyErr_Format(sidexError, "sidex_Variant_New_DateTime failed (%ld)",err);
             return NULL;
     }
-    if (NULL == svariant) {
+    if (SIDEX_HANDLE_TYPE_NULL == svariant) {
             // Seems to be no Unicode / String parameter
             return NULL;
     }
@@ -1106,7 +1106,7 @@ static PyObject * _sidex_Variant_New_String(PyObject *self, PyObject *args)
             PyErr_Format(sidexError, "sidex_Variant_New_String failed (%ld)",err);
             return NULL;
     }
-    if (NULL == svariant) {
+    if (SIDEX_HANDLE_TYPE_NULL == svariant) {
             // Seems to be no Unicode / String parameter
             return NULL;
     }
@@ -3955,7 +3955,7 @@ static PyObject * _PyObjectAsSidexVariant(PyObject *self, PyObject *args)
             PyErr_Format(sidexError, "_PyObjectAsSidexVariant failed (%ld)",err);
             return NULL;
     }
-    if (NULL == sVariant) {
+    if (SIDEX_HANDLE_TYPE_NULL == sVariant) {
             // Seems to be no Unicode / String parameter
             return NULL;
     }
