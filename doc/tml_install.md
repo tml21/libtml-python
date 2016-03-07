@@ -2,7 +2,7 @@
 
 ### Get libTML Core library ###
 
-TML for Python RAD requires the [libTML core library](https://github.com/tml21/libtml-c) to be installed. Get the source of the core library and follow the instructions of the [libTML-c installation guide](http://www.libtml.org/docs/libtml-c-html/md_tml_install.html).
+TML for Python RAD requires the [libTML core library](https://github.com/tml21/libtml-c) to be installed. Get the source of the core library and follow the instructions of the [libTML-c installation guide](http://www.libtml.org/docs/libtml-c-html/tml_install.html).
 
 ### Get libTML for Python ###
 
@@ -10,7 +10,19 @@ Download the [libTML-python source package from GitHub](https://github.com/tml21
 
 ## Prerequisites ##
 
-TML for Python uses *disutils* to build and install the libraries. Compiling the Python Extension to access the libTML core library requires a compiler. For installation on Linux use gcc and on Windows Visual Studio.
+TML for Python uses *distutils* to build and install the libraries. Compiling the Python Extension to access the libTML core library requires a compiler. For installation on Linux use gcc and on Windows Visual Studio.
+
+### Working with libTML-c binary packages ###
+
+If you use the libTML-c binary packages you have to take care about the runtime environment.<br>
+Please refer to the "[Install libTML-c binary package](http://libtml.org/docs/libtml-c-html/tml_bin_install.html)" documentation for details.
+
+It may be necessary to configure the system using the right compiler and runtime environment.<br>
+For example on FreeBSD:
+
+	setenv CC gcc49
+	setenv CXX g++49
+	setenv LD_LIBRARY_PATH /usr/local/lib/gcc49
 
 ## Installation ##
 

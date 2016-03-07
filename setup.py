@@ -56,6 +56,10 @@ elif sys.platform.startswith('darwin'):
     print("OS X detected ...")
     platform_macros = [('LINUX', ''), ('GCC4', '')]
     compiler_options = ['-std=c++11', '-Wno-attributes', '-Wno-conversion-null', '-Wno-null-arithmetic', '-Wno-unused-variable']
+elif sys.platform.startswith('freebsd'):
+    print("freeBSD detected ...")
+    platform_macros = [('LINUX', ''), ('GCC4', '')]
+    compiler_options = ['-std=c++0x', '-Wno-attributes', '-Wno-conversion-null', '-Wno-pointer-arith', '-Wno-unused-variable']
 else:
     platform_macros = []
     compiler_options = []
@@ -106,7 +110,7 @@ setup(name='libtml-python',
       long_description='''TML Messaging Suite is a network messaging library
        for rapid development of extensible and scalable interfaces.''',
       license='LGPL 2.1 or later',
-      platforms=["Windows", "Linux", "OS-X"],
+      platforms=["Windows", "Linux", "OS-X", "freeBSD"],
       packages=['sidex', 'tml'],
       package_data={},
       ext_modules=[_sidex_ext, _tml_ext])
