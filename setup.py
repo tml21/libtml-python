@@ -35,6 +35,7 @@
 
 from distutils.core import setup, Extension
 import sys
+import os
 #-----------------------------------------------------------
 
 if sys.maxsize == 2147483647:
@@ -47,7 +48,16 @@ else:
 if sys.platform.startswith('linux'):
     print("linux detected ...")
     platform_macros = [('LINUX', ''), ('GCC4', '')]
-    compiler_options = ['-std=c++0x', '-Wno-attributes', '-Wno-conversion-null', '-Wno-pointer-arith', '-Wno-unused-variable', '-Wno-unused-but-set-variable']
+    compiler_options = ['-std=c++0x']
+    if os.uname()[4].startswith('arm'):
+        print("arm detected ...")
+        platform_macros = platform_macros + [('__STDC_FORMAT_MACROS', '')]
+    else:
+        compiler_options = compiler_options + ['-Wno-attributes',
+                                               '-Wno-conversion-null',
+                                               '-Wno-pointer-arith',
+                                               '-Wno-unused-variable',
+                                               '-Wno-unused-but-set-variable']
 elif sys.platform.startswith('win32'):
     print("windows detected ...")
     platform_macros = []
@@ -55,11 +65,19 @@ elif sys.platform.startswith('win32'):
 elif sys.platform.startswith('darwin'):
     print("OS X detected ...")
     platform_macros = [('LINUX', ''), ('GCC4', '')]
-    compiler_options = ['-std=c++11', '-Wno-attributes', '-Wno-conversion-null', '-Wno-null-arithmetic', '-Wno-unused-variable']
+    compiler_options = ['-std=c++11',
+                        '-Wno-attributes',
+                        '-Wno-conversion-null',
+                        '-Wno-null-arithmetic',
+                        '-Wno-unused-variable']
 elif sys.platform.startswith('freebsd'):
     print("freeBSD detected ...")
     platform_macros = [('LINUX', ''), ('GCC4', '')]
-    compiler_options = ['-std=c++0x', '-Wno-attributes', '-Wno-conversion-null', '-Wno-pointer-arith', '-Wno-unused-variable']
+    compiler_options = ['-std=c++0x',
+                        '-Wno-attributes',
+                        '-Wno-conversion-null',
+                        '-Wno-pointer-arith',
+                        '-Wno-unused-variable']
 else:
     platform_macros = []
     compiler_options = []

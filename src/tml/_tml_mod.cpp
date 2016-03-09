@@ -453,7 +453,6 @@ static void releaseCommandDispatchCallbackData(bool bReleaseDict){
 static void releaseCommandDispatchCallbackData4Profile(TML_TCHAR* pProfile){
   TML_INT32 err = TML_SUCCESS;
   SIDEX_VARIANT profileDict = SIDEX_HANDLE_TYPE_NULL;
-  SIDEX_VARIANT vData       = SIDEX_HANDLE_TYPE_NULL;
   err = sidex_Variant_Dict_Get(m_cmdDispatchDict, pProfile, &profileDict);
   if (TML_SUCCESS == err){
     err = sidex_Variant_Dict_First(profileDict);
@@ -6215,12 +6214,6 @@ struct module_state {
 
 #if PY_MAJOR_VERSION >= 3
 #define GETSTATE(m) ((struct module_state*)PyModule_GetState(m))
-#else
-#define GETSTATE(m) (&_state)
-static struct module_state _state;
-#endif
-
-#if PY_MAJOR_VERSION >= 3
 
 static int _tml_traverse(PyObject *m, visitproc visit, void *arg) {
     Py_VISIT(GETSTATE(m)->error);
@@ -6267,11 +6260,11 @@ PyMODINIT_FUNC init_tml(void)
         INITERROR;
 
     // create and register exception
-    tmlError = PyErr_NewException("tml.error", NULL, NULL);
+    tmlError = PyErr_NewException((char*)"tml.error", NULL, NULL);
     Py_INCREF(tmlError);
     PyModule_AddObject(m, "tmlError", tmlError);
 
-    tmlIndexError = PyErr_NewException("tml.error", NULL, NULL);
+    tmlIndexError = PyErr_NewException((char*)"tml.error", NULL, NULL);
     Py_INCREF(tmlIndexError);
     PyModule_AddObject(m, "tmlIndexError", tmlIndexError);
 
