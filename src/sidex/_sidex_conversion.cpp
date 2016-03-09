@@ -284,9 +284,11 @@ SIDEX_VARIANT _sidex_Variant_New_DateTimeS(PyObject *args, SIDEX_INT32* err, PyO
           return svariant;
       }
       #ifdef LINUX
-        swprintf (dateTimeStringTemp, 64, L"%04lld-%02lld-%02lld %02lld:%02lld:%02lld:%03lld", year64, month64, day64, hours64, minutes64, seconds64, milliseconds64);
+        swprintf (dateTimeStringTemp, 64, L"%04" PRId64 "-%02" PRId64 "-%02" PRId64 " %02" PRId64 ":%02" PRId64 ":%02" PRId64 ":%03" PRId64,
+                  year64, month64, day64, hours64, minutes64, seconds64, milliseconds64);
       #else // LINUX
-        swprintf_s (dateTimeStringTemp, 64, L"%04lld-%02lld-%02lld %02lld:%02lld:%02lld:%03lld", year64, month64, day64, hours64, minutes64, seconds64, milliseconds64);
+        swprintf_s (dateTimeStringTemp, 64, L"%04" PRId64 "-%02" PRId64 "-%02" PRId64 " %02" PRId64 ":%02" PRId64 ":%02" PRId64 ":%03" PRId64,
+                    year64, month64, day64, hours64, minutes64, seconds64, milliseconds64);
       #endif // LINUX
     }
     Py_BEGIN_ALLOW_THREADS;
@@ -562,7 +564,7 @@ int DayOfWeek (int day, int month, int year){
 }
 
 ///////////////////////////////////////////////////////////////////////////
-// Calc day of week
+// Calc day of year
 int DayOfYear (int day, int month, int year){
 
   int PADDING[12] = {0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334};
