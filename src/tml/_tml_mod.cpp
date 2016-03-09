@@ -223,22 +223,20 @@ static TML_INT32 getCallbackDataFromDict(TML_TCHAR* pProfile,
  *----------------------------------------------------------------
  */
 static TML_INT32 getRecStrmCallbackDataFromDict(TML_INT64 iID,
-                                                    PyObject* pCB_Rec_Strm_DLD_Block_Func, PyObject* pCB_Rec_Strm_DLD_Block_Data,
-                                                    PyObject* pCB_Rec_Strm_DLD_Finish_Func, PyObject* pCB_Rec_Strm_DLD_Finish_Data,
-                                                    PythonReceiverStrmCallbackData** callbackData, SIDEX_VARIANT dict){
+                                                PyObject* pCB_Rec_Strm_DLD_Block_Func, PyObject* pCB_Rec_Strm_DLD_Block_Data,
+                                                PyObject* pCB_Rec_Strm_DLD_Finish_Func, PyObject* pCB_Rec_Strm_DLD_Finish_Data,
+                                                PythonReceiverStrmCallbackData** callbackData, SIDEX_VARIANT dict){
   TML_INT32     err    = TML_SUCCESS;
   SIDEX_VARIANT vData  = SIDEX_HANDLE_TYPE_NULL;
 
-  char sKey[128], sFormat[5];
-  sFormat[0] = '%'; sFormat[1] = 'l'; sFormat[2] = 'd'; sFormat[3] = '\0';
-  if (sizeof(void*) == 8){ sFormat[2] = 'l'; sFormat[3] = 'd'; sFormat[4] = '\0'; }
+  char sKey[128];
 #ifdef LINUX
-  sprintf (sKey, sFormat, iID);
+  sprintf (sKey, "%" PRId64, iID);
 #else // LINUX
   #if _MSC_VER > 1500
-    sprintf_s (sKey, 128, sFormat, iID);
+    sprintf_s (sKey, 128, "%" PRId64, iID);
   #else
-    sprintf (sKey, sFormat, iID);
+    sprintf (sKey, "%" PRId64, iID);
   #endif
 #endif // LINUX
 
@@ -289,16 +287,14 @@ static TML_INT32 getSndStrmCallbackDataFromDict(TML_INT64 iID,
   TML_INT32     err    = TML_SUCCESS;
   SIDEX_VARIANT vData  = SIDEX_HANDLE_TYPE_NULL;
 
-  char sKey[128], sFormat[5];
-  sFormat[0] = '%'; sFormat[1] = 'l'; sFormat[2] = 'd'; sFormat[3] = '\0';
-  if (sizeof(void*) == 8){ sFormat[2] = 'l'; sFormat[3] = 'd'; sFormat[4] = '\0'; }
+  char sKey[128];
 #ifdef LINUX
-  sprintf (sKey, sFormat, iID);
+  sprintf (sKey, "%" PRId64, iID);
 #else // LINUX
   #if _MSC_VER > 1500
-    sprintf_s (sKey, 128, sFormat, iID);
+    sprintf_s (sKey, 128, "%" PRId64, iID);
   #else
-    sprintf (sKey, sFormat, iID);
+    sprintf (sKey, "%" PRId64, iID);
   #endif
 #endif // LINUX
 
@@ -552,16 +548,14 @@ static void releaseCallbackDataDict4Profile(SIDEX_VARIANT dict, TML_TCHAR* pProf
 static void removeRecStrmCallbackDataFromDict(SIDEX_VARIANT dict, TML_INT64 iID){
   TML_INT32 err = TML_SUCCESS;
 
-  char sKey[128], sFormat[5];
-  sFormat[0] = '%'; sFormat[1] = 'l'; sFormat[2] = 'd'; sFormat[3] = '\0';
-  if (sizeof(void*) == 8){ sFormat[2] = 'l'; sFormat[3] = 'd'; sFormat[4] = '\0'; }
+  char sKey[128];
 #ifdef LINUX
-  sprintf (sKey, sFormat, iID);
+  sprintf (sKey, "%" PRId64, iID);
 #else // LINUX
   #if _MSC_VER > 1500
-    sprintf_s (sKey, 128, sFormat, iID);
+    sprintf_s (sKey, 128, "%" PRId64, iID);
   #else
-    sprintf (sKey, sFormat, iID);
+    sprintf (sKey, "%" PRId64, iID);
   #endif
 #endif // LINUX
 
@@ -627,16 +621,14 @@ static void removeAllRecStrmCallbackDataFromDict(SIDEX_VARIANT dict, bool bRelea
 static void removeSndStrmCallbackDataFromDict(SIDEX_VARIANT dict, TML_INT64 iID){
   TML_INT32 err = TML_SUCCESS;
 
-  char sKey[128], sFormat[5];
-  sFormat[0] = '%'; sFormat[1] = 'l'; sFormat[2] = 'd'; sFormat[3] = '\0';
-  if (sizeof(void*) == 8){ sFormat[2] = 'l'; sFormat[3] = 'd'; sFormat[4] = '\0'; }
+  char sKey[128];
 #ifdef LINUX
-  sprintf (sKey, sFormat, iID);
+  sprintf (sKey, "%" PRId64, iID);
 #else // LINUX
   #if _MSC_VER > 1500
-    sprintf_s (sKey, 128, sFormat, iID);
+    sprintf_s (sKey, 128, "%" PRId64, iID);
   #else
-    sprintf (sKey, sFormat, iID);
+    sprintf (sKey, "%" PRId64, iID);
   #endif
 #endif // LINUX
 
