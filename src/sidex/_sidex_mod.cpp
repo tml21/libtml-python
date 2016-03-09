@@ -84,7 +84,7 @@ static PyObject * _sidex_Get_Version(PyObject *self)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Get_Version failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Get_Version failed (%" PRId32 ")",err);
             return NULL;
     }
     
@@ -117,7 +117,7 @@ static PyObject * _sidex_Get_Copyright(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Get_Copyright failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Get_Copyright failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -163,7 +163,7 @@ static PyObject * _sidex_Set_Password(PyObject *self, PyObject *args)
     unicodeFree(py_PassWord16, pPassWord);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Set_Password failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Set_Password failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -200,7 +200,7 @@ static PyObject * _sidex_Create(PyObject *self, PyObject *args)
     unicodeFree(py_pname16, pname);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Create failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Create failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -237,7 +237,7 @@ static PyObject * _sidex_Set_DocumentName(PyObject *self, PyObject *args)
     unicodeFree(py_pname16, pname);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Set_DocumentName failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Set_DocumentName failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -269,7 +269,7 @@ static PyObject * _sidex_Get_DocumentName(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Get_DocumentName failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Get_DocumentName failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -302,7 +302,7 @@ static PyObject * _sidex_Clear(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Clear failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Clear failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -333,7 +333,7 @@ static PyObject * _sidex_Free(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Free failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Free failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -370,7 +370,7 @@ static PyObject * _sidex_Load_Content(PyObject *self, PyObject *args)
     unicodeFree(py_pname16, pname);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Load_Content failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Load_Content failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -407,7 +407,7 @@ static PyObject * _sidex_Set_Content(PyObject *self, PyObject *args)
     unicodeFree(py_pcontent16, pcontent);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Set_Content failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Set_Content failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -441,7 +441,7 @@ static PyObject * _sidex_Get_Content(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Get_Content failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Get_Content failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -480,7 +480,7 @@ static PyObject * _sidex_Get_Content_Length(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Get_Content_Length failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Get_Content_Length failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -518,7 +518,7 @@ static PyObject * _sidex_Save_Content(PyObject *self, PyObject *args)
     unicodeFree(py_filename16, filename);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Save_Content failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Save_Content failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -560,7 +560,7 @@ static PyObject * _sidex_None_Write(PyObject *self, PyObject *args)
     unicodeFree(py_nkey16, nkey);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_None_Write failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_None_Write failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -603,7 +603,7 @@ static PyObject * _sidex_Boolean_Write(PyObject *self, PyObject *args)
     unicodeFree(py_nkey16, nkey);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Boolean_Write failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Boolean_Write failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -647,7 +647,7 @@ static PyObject * _sidex_Boolean_Read(PyObject *self, PyObject *args)
     unicodeFree(py_nkey16, nkey);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Boolean_Read failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Boolean_Read failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -693,7 +693,7 @@ static PyObject * _sidex_Integer_Write(PyObject *self, PyObject *args)
     unicodeFree(py_nkey16, nkey);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Integer_Write failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Integer_Write failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -737,7 +737,7 @@ static PyObject * _sidex_Integer_Read(PyObject *self, PyObject *args)
     unicodeFree(py_nkey16, nkey);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Integer_Read failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Integer_Read failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -780,7 +780,7 @@ static PyObject * _sidex_Float_Write(PyObject *self, PyObject *args)
     unicodeFree(py_nkey16, nkey);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Float_Write failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Float_Write failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -824,7 +824,7 @@ static PyObject * _sidex_Float_Read(PyObject *self, PyObject *args)
     unicodeFree(py_nkey16, nkey);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Float_Read failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Float_Read failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -867,7 +867,7 @@ static PyObject * _sidex_Variant_Write(PyObject *self, PyObject *args)
     unicodeFree(py_nkey16, nkey);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_Write failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_Write failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -911,7 +911,7 @@ static PyObject * _sidex_Variant_Read(PyObject *self, PyObject *args)
     unicodeFree(py_nkey16, nkey);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_Read failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_Read failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -942,7 +942,7 @@ static PyObject * _sidex_Variant_DecRef(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_DecRef failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_DecRef failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -973,7 +973,7 @@ static PyObject * _sidex_Variant_IncRef(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_IncRef failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_IncRef failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -991,7 +991,7 @@ static PyObject * _sidex_Variant_New_None(PyObject *self)
 
     SIDEX_VARIANT svariant = _sidex_Variant_New_NoneS(&err);
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_New_None failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_New_None failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -1009,7 +1009,7 @@ static PyObject * _sidex_Variant_New_Boolean(PyObject *self, PyObject *args)
 
     SIDEX_VARIANT svariant = _sidex_Variant_New_BooleanS(args, &err);
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_New_Boolean failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_New_Boolean failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -1027,7 +1027,7 @@ static PyObject * _sidex_Variant_New_Integer(PyObject *self, PyObject *args)
 
     SIDEX_VARIANT svariant = _sidex_Variant_New_IntegerS(args, &err);
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_New_Integer failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_New_Integer failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -1045,7 +1045,7 @@ static PyObject * _sidex_Variant_New_Float(PyObject *self, PyObject *args)
 
     SIDEX_VARIANT svariant = _sidex_Variant_New_FloatS(args, &err);
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_New_Float failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_New_Float failed (%" PRId32 ")",err);
             return NULL;
     }
     return Py_BuildValue("L",svariant);
@@ -1063,7 +1063,7 @@ static PyObject * _sidex_Variant_New_DateTime(PyObject *self, PyObject *args)
     SIDEX_VARIANT svariant = _sidex_Variant_New_DateTimeS(args, &err, sidexError);
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_New_DateTime failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_New_DateTime failed (%" PRId32 ")",err);
             return NULL;
     }
     if (SIDEX_HANDLE_TYPE_NULL == svariant) {
@@ -1103,7 +1103,7 @@ static PyObject * _sidex_Variant_New_String(PyObject *self, PyObject *args)
 
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_New_String failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_New_String failed (%" PRId32 ")",err);
             return NULL;
     }
     if (SIDEX_HANDLE_TYPE_NULL == svariant) {
@@ -1125,7 +1125,7 @@ static PyObject * _sidex_Variant_New_Binary(PyObject *self, PyObject *args)
 
     SIDEX_VARIANT svariant = _sidex_Variant_New_BinaryS(args, &err);
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_New_Binary failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_New_Binary failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -1143,7 +1143,7 @@ static PyObject * _sidex_Variant_New_List(PyObject *self)
 
     SIDEX_VARIANT svariant = _sidex_Variant_New_ListS(&err);
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_New_List failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_New_List failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -1162,7 +1162,7 @@ static PyObject * _sidex_Variant_New_Dict(PyObject *self)
     SIDEX_VARIANT svariant = _sidex_Variant_New_DictS(&err);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_New_Dict failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_New_Dict failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -1190,7 +1190,7 @@ static PyObject * _sidex_Variant_New_Table(PyObject *self)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_New_Table failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_New_Table failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -1222,7 +1222,7 @@ static PyObject * _sidex_Variant_New_DictBySize(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_New_DictBySize failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_New_DictBySize failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -1254,7 +1254,7 @@ static PyObject * _sidex_Variant_List_Check(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_List_Check failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_List_Check failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -1290,7 +1290,7 @@ static PyObject * _sidex_Variant_List_Size(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_List_Size failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_List_Size failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -1323,7 +1323,7 @@ static PyObject * _sidex_Variant_List_Append(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_List_Append failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_List_Append failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -1358,7 +1358,7 @@ static PyObject * _sidex_Variant_List_Insert(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_List_Insert failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_List_Insert failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -1393,7 +1393,7 @@ static PyObject * _sidex_Variant_List_Set(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_List_Set failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_List_Set failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -1427,7 +1427,7 @@ static PyObject * _sidex_Variant_List_DeleteItem(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_List_DeleteItem failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_List_DeleteItem failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -1458,7 +1458,7 @@ static PyObject * _sidex_Variant_List_Clear(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_List_Clear failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_List_Clear failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -1495,10 +1495,10 @@ static PyObject * _sidex_Variant_List_Get(PyObject *self, PyObject *args)
     if (err != SIDEX_SUCCESS) {
         switch(err) {
         case SIDEX_ERR_NOCONTENT:
-                    PyErr_Format(sidexError, "sidex_Variant_List_Get failed (%ld)",err);
+                    PyErr_Format(sidexError, "sidex_Variant_List_Get failed (%" PRId32 ")",err);
                     return NULL;
         default:	
-                    PyErr_Format(sidexError, "sidex_Variant_List_Get failed (%ld)",err);
+                    PyErr_Format(sidexError, "sidex_Variant_List_Get failed (%" PRId32 ")",err);
                     return NULL;
         }
     }
@@ -1531,7 +1531,7 @@ static PyObject * _sidex_Variant_Dict_Check(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_Dict_Check failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_Dict_Check failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -1573,7 +1573,7 @@ static PyObject * _sidex_Variant_Dict_Set(PyObject *self, PyObject *args)
     unicodeFree(py_key16, pkey);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_Dict_Set failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_Dict_Set failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -1605,7 +1605,7 @@ static PyObject * _sidex_GetGroups(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_GetGroups failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_GetGroups failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -1643,7 +1643,7 @@ static PyObject * _sidex_HasGroup(PyObject *self, PyObject *args)
     unicodeFree(py_group16, pgroup);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_HasGroup failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_HasGroup failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -1684,7 +1684,7 @@ static PyObject * _sidex_GetKeys(PyObject *self, PyObject *args)
     unicodeFree(py_group16, pgroup);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_GetKeys failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_GetKeys failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -1727,7 +1727,7 @@ static PyObject * _sidex_HasKey(PyObject *self, PyObject *args)
     unicodeFree(py_key16, pkey);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_HasKey failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_HasKey failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -1767,7 +1767,7 @@ static PyObject * _sidex_DeleteGroup(PyObject *self, PyObject *args)
     unicodeFree(py_group16, pgroup);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_DeleteGroup failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_DeleteGroup failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -1809,7 +1809,7 @@ static PyObject * _sidex_DeleteKey(PyObject *self, PyObject *args)
     unicodeFree(py_key16, pkey);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_DeleteKey failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_DeleteKey failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -1841,7 +1841,7 @@ static PyObject * _sidex_Variant_Dict_Size(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_Dict_Size failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_Dict_Size failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -1873,7 +1873,7 @@ static PyObject * _sidex_Variant_Dict_Keys(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_Dict_Keys failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_Dict_Keys failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -1904,7 +1904,7 @@ static PyObject * _sidex_Variant_Dict_First(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_Dict_First failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_Dict_First failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -1940,7 +1940,7 @@ static PyObject * _sidex_Variant_Dict_Next(PyObject *self, PyObject *args)
 		Py_RETURN_NONE;
 	}
     else if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_Dict_Next failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_Dict_Next failed (%" PRId32 ")",err);
             return NULL;
     } 
     else{
@@ -1986,7 +1986,7 @@ static PyObject * _sidex_Variant_Dict_HasKey(PyObject *self, PyObject *args)
     unicodeFree(py_key16, pkey);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_Dict_HasKey failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_Dict_HasKey failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -2026,7 +2026,7 @@ static PyObject * _sidex_Variant_Dict_Delete(PyObject *self, PyObject *args)
     unicodeFree(py_key16, pkey);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_Dict_Delete failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_Dict_Delete failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -2057,7 +2057,7 @@ static PyObject * _sidex_Variant_Dict_Clear(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_Dict_Clear failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_Dict_Clear failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -2095,7 +2095,7 @@ static PyObject * _sidex_Variant_Dict_Get(PyObject *self, PyObject *args)
     unicodeFree(py_key16, pkey);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_Dict_Get failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_Dict_Get failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -2127,7 +2127,7 @@ static PyObject * _sidex_Variant_GetType(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_GetType failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_GetType failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -2159,7 +2159,7 @@ static PyObject * _sidex_Variant_Copy(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_Copy failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_Copy failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -2191,7 +2191,7 @@ static PyObject * _sidex_Variant_None_Check(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_None_Check failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_None_Check failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -2226,7 +2226,7 @@ static PyObject * _sidex_Variant_Boolean_Check(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_Boolean_Check failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_Boolean_Check failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -2261,7 +2261,7 @@ static PyObject * _sidex_Variant_Integer_Check(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_Integer_Check failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_Integer_Check failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -2296,7 +2296,7 @@ static PyObject * _sidex_Variant_Float_Check(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_Float_Check failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_Float_Check failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -2331,7 +2331,7 @@ static PyObject * _sidex_Variant_DateTime_Check(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_DateTime_Check failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_DateTime_Check failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -2366,7 +2366,7 @@ static PyObject * _sidex_Variant_String_Check(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_String_Check failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_String_Check failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -2401,7 +2401,7 @@ static PyObject * _sidex_Variant_Binary_Check(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_Binary_Check failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_Binary_Check failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -2447,7 +2447,7 @@ static PyObject * _sidex_DateTime_Read(PyObject *self, PyObject *args)
     unicodeFree(py_key16, pkey);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_DateTime_Read failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_DateTime_Read failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -2490,7 +2490,7 @@ static PyObject * _sidex_DateTime_Write(PyObject *self, PyObject *args)
     unicodeFree(py_key16, pkey);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_DateTime_Write failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_DateTime_Write failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -2537,7 +2537,7 @@ static PyObject * _sidex_String_Read(PyObject *self, PyObject *args)
     unicodeFree(py_key16, pkey);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_String_Read failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_String_Read failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -2587,7 +2587,7 @@ static PyObject * _sidex_String_Length(PyObject *self, PyObject *args)
     unicodeFree(py_key16, pkey);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_String_Length failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_String_Length failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -2634,7 +2634,7 @@ static PyObject * _sidex_Binary_Read(PyObject *self, PyObject *args)
     unicodeFree(py_key16, pkey);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Binary_Read failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Binary_Read failed (%" PRId32 ")",err);
             return NULL;
     }
 #if PY_MAJOR_VERSION == 2
@@ -2691,7 +2691,7 @@ static PyObject * _sidex_Binary_Length(PyObject *self, PyObject *args)
     unicodeFree(py_key16, pkey);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Binary_Length failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Binary_Length failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -2738,7 +2738,7 @@ static PyObject * _sidex_String_Write(PyObject *self, PyObject *args)
     unicodeFree(py_result16, result);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_String_Write failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_String_Write failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -2783,7 +2783,7 @@ static PyObject * _sidex_Binary_Write(PyObject *self, PyObject *args)
     unicodeFree(py_key16, pkey);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Binary_Write failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Binary_Write failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -2826,7 +2826,7 @@ static PyObject * _sidex_List_Read(PyObject *self, PyObject *args)
     unicodeFree(py_key16, pkey);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_List_Read failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_List_Read failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -2869,7 +2869,7 @@ static PyObject * _sidex_List_Write(PyObject *self, PyObject *args)
     unicodeFree(py_key16, pkey);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_List_Write failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_List_Write failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -2912,7 +2912,7 @@ static PyObject * _sidex_Dict_Read(PyObject *self, PyObject *args)
     unicodeFree(py_key16, pkey);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Dict_Read failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Dict_Read failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -2955,7 +2955,7 @@ static PyObject * _sidex_Dict_Write(PyObject *self, PyObject *args)
     unicodeFree(py_key16, pkey);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Dict_Write failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Dict_Write failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -2998,7 +2998,7 @@ static PyObject * _sidex_Table_Read(PyObject *self, PyObject *args)
     unicodeFree(py_key16, pkey);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Table_Read failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Table_Read failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -3042,7 +3042,7 @@ static PyObject * _sidex_Table_Write(PyObject *self, PyObject *args)
     unicodeFree(py_key16, pkey);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Table_Write failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Table_Write failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -3075,7 +3075,7 @@ static PyObject * _sidex_Variant_As_Boolean(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_As_Boolean failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_As_Boolean failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -3111,7 +3111,7 @@ static PyObject * _sidex_Variant_As_Integer(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_As_Integer failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_As_Integer failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -3144,7 +3144,7 @@ static PyObject * _sidex_Variant_As_Float(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_As_Float failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_As_Float failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -3177,7 +3177,7 @@ static PyObject * _sidex_Variant_As_DateTime(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_As_DateTime failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_As_DateTime failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -3234,7 +3234,7 @@ static PyObject * _sidex_Variant_As_String(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_As_String failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_As_String failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -3269,7 +3269,7 @@ static PyObject * _sidex_Variant_String_GetFormat(PyObject *self, PyObject *args
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_String_GetFormat failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_String_GetFormat failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -3308,7 +3308,7 @@ static PyObject * _sidex_Variant_String_SetFormat(PyObject *self, PyObject *args
     unicodeFree(py_pFormat16, pFormat);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "_sidex_Variant_String_SetFormat failed (%ld)",err);
+            PyErr_Format(sidexError, "_sidex_Variant_String_SetFormat failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -3341,7 +3341,7 @@ static PyObject * _sidex_Variant_As_String_Length(PyObject *self, PyObject *args
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_As_String_Length failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_As_String_Length failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -3375,7 +3375,7 @@ static PyObject * _sidex_Variant_As_Binary(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_As_Binary failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_As_Binary failed (%" PRId32 ")",err);
             return NULL;
     }
     PyObject* pRes;
@@ -3422,7 +3422,7 @@ static PyObject * _sidex_Variant_As_Binary_Length(PyObject *self, PyObject *args
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_As_Binary_Length failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_As_Binary_Length failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -3455,7 +3455,7 @@ static PyObject * _sidex_Variant_Table_Check(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_Table_Check failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_Table_Check failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -3492,7 +3492,7 @@ static PyObject * _sidex_Variant_Table_Rows(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_Table_Rows failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_Table_Rows failed (%" PRId32 ")",err);
             return NULL;
     }
     return Py_BuildValue("l",iRows);
@@ -3524,7 +3524,7 @@ static PyObject * _sidex_Variant_Table_Columns(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_Table_Columns failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_Table_Columns failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -3557,7 +3557,7 @@ static PyObject * _sidex_Variant_Table_ColumnNames(PyObject *self, PyObject *arg
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_Table_ColumnNames failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_Table_ColumnNames failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -3596,7 +3596,7 @@ static PyObject * _sidex_Variant_Table_HasColumn(PyObject *self, PyObject *args)
     unicodeFree(py_pColumn16, pColumn);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_Table_HasColumn failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_Table_HasColumn failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -3637,7 +3637,7 @@ static PyObject * _sidex_Variant_Table_AddColumn(PyObject *self, PyObject *args)
     unicodeFree(py_pColumnName16, pColumnName);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_Table_AddColumn failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_Table_AddColumn failed (%" PRId32 ")",err);
             return NULL;
     }
     Py_RETURN_NONE;
@@ -3674,7 +3674,7 @@ static PyObject * _sidex_Variant_Table_DeleteColumn(PyObject *self, PyObject *ar
     unicodeFree(py_pColumn16, pColumn);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_Table_DeleteColumn failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_Table_DeleteColumn failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -3708,7 +3708,7 @@ static PyObject * _sidex_Variant_Table_GetColumnName(PyObject *self, PyObject *a
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_Table_GetColumnName failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_Table_GetColumnName failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -3743,7 +3743,7 @@ static PyObject * _sidex_Variant_Table_AddRow(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_Table_AddRow failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_Table_AddRow failed (%" PRId32 ")",err);
             return NULL;
     }
     return Py_BuildValue("l",iRowIndex);
@@ -3777,7 +3777,7 @@ static PyObject * _sidex_Variant_Table_DeleteRow(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_Table_DeleteRow failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_Table_DeleteRow failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -3809,7 +3809,7 @@ static PyObject * _sidex_Variant_Table_DeleteRows(PyObject *self, PyObject *args
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_Table_DeleteRows failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_Table_DeleteRows failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -3845,7 +3845,7 @@ static PyObject * _sidex_Variant_Table_GetRow(PyObject *self, PyObject *args)
     Py_END_ALLOW_THREADS;
     
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_Table_GetRow failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_Table_GetRow failed (%" PRId32 ")",err);
             return NULL;
     }
 
@@ -3887,7 +3887,7 @@ static PyObject * _sidex_Variant_Table_GetField(PyObject *self, PyObject *args)
     unicodeFree(py_pColumnName16, pColumnName);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_Table_GetField failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_Table_GetField failed (%" PRId32 ")",err);
             return NULL;
     }
     return Py_BuildValue("L",pValue);
@@ -3928,7 +3928,7 @@ static PyObject * _sidex_Variant_Table_SetField(PyObject *self, PyObject *args)
     unicodeFree(py_pColumnName16, pColumnName);
 
     if (err != SIDEX_SUCCESS) {
-            PyErr_Format(sidexError, "sidex_Variant_Table_SetField failed (%ld)",err);
+            PyErr_Format(sidexError, "sidex_Variant_Table_SetField failed (%" PRId32 ")",err);
             return NULL;
     }
     Py_RETURN_NONE;
@@ -3952,7 +3952,7 @@ static PyObject * _PyObjectAsSidexVariant(PyObject *self, PyObject *args)
     sVariant = _PyObjectAsSidexVariantS (value, &err, sidexError);
 
     if (SIDEX_SUCCESS != err){
-            PyErr_Format(sidexError, "_PyObjectAsSidexVariant failed (%ld)",err);
+            PyErr_Format(sidexError, "_PyObjectAsSidexVariant failed (%" PRId32 ")",err);
             return NULL;
     }
     if (SIDEX_HANDLE_TYPE_NULL == sVariant) {
@@ -4010,7 +4010,7 @@ static PyObject * _SidexVariantAsPyObject(PyObject *self, PyObject *args)
     }
 
     if (SIDEX_SUCCESS != err){
-            PyErr_Format(sidexError, "_SidexVariantAsPyObject failed (%ld)",err);
+            PyErr_Format(sidexError, "_SidexVariantAsPyObject failed (%" PRId32 ")",err);
             return NULL;
     }
     return retValue;
@@ -4168,12 +4168,6 @@ struct module_state {
 
 #if PY_MAJOR_VERSION >= 3
 #define GETSTATE(m) ((struct module_state*)PyModule_GetState(m))
-#else
-#define GETSTATE(m) (&_state)
-static struct module_state _state;
-#endif
-
-#if PY_MAJOR_VERSION >= 3
 
 static int _sidex_traverse(PyObject *m, visitproc visit, void *arg) {
     Py_VISIT(GETSTATE(m)->error);
@@ -4220,11 +4214,11 @@ PyMODINIT_FUNC init_sidex(void)
         INITERROR;
 
     // create and register exception
-    sidexError = PyErr_NewException("sidex.error", NULL, NULL);
+    sidexError = PyErr_NewException((char*)"sidex.error", NULL, NULL);
     Py_INCREF(sidexError);
     PyModule_AddObject(m, "sidexError", sidexError);
 
-    sidexIndexError = PyErr_NewException("sidex.error", NULL, NULL);
+    sidexIndexError = PyErr_NewException((char*)"sidex.error", NULL, NULL);
     Py_INCREF(sidexIndexError);
     PyModule_AddObject(m, "sidexIndexError", sidexIndexError);
 

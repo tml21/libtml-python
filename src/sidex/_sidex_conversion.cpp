@@ -31,7 +31,7 @@
  *    wobe-systems GmbH
  *    support@libtml.org
  */
- 
+
 #ifndef LINUX
 #include <Windows.h>
 #endif
@@ -285,10 +285,10 @@ SIDEX_VARIANT _sidex_Variant_New_DateTimeS(PyObject *args, SIDEX_INT32* err, PyO
       }
       #ifdef LINUX
         swprintf (dateTimeStringTemp, 64, L"%04" PRId64 "-%02" PRId64 "-%02" PRId64 " %02" PRId64 ":%02" PRId64 ":%02" PRId64 ":%03" PRId64,
-                  year64, month64, day64, hours64, minutes64, seconds64, milliseconds64);
+		  year64, month64, day64, hours64, minutes64, seconds64, milliseconds64);
       #else // LINUX
         swprintf_s (dateTimeStringTemp, 64, L"%04" PRId64 "-%02" PRId64 "-%02" PRId64 " %02" PRId64 ":%02" PRId64 ":%02" PRId64 ":%03" PRId64,
-                    year64, month64, day64, hours64, minutes64, seconds64, milliseconds64);
+		    year64, month64, day64, hours64, minutes64, seconds64, milliseconds64);
       #endif // LINUX
     }
     Py_BEGIN_ALLOW_THREADS;
@@ -760,12 +760,10 @@ PyObject*_SidexVariantDecode(SIDEX_VARIANT sVariant, SIDEX_INT32* err){
                                     SIDEX_VARIANT sVarColumnName;
                                     *err = sidex_Variant_List_Get (sVarColumnNames, columnIndex, &sVarColumnName);
                                     if (SIDEX_SUCCESS == *err){
-                                      PyObject* pyColumnName = NULL;
-                                      pyColumnName = _SidexVariantDecode(sVarColumnName, err);
+                                      SIDEX_TCHAR* sColumnNameTemp;
+                                      SIDEX_INT32 isColLength;
+                                      *err = sidex_Variant_As_String (sVarColumnName, &sColumnNameTemp, &isColLength);
                                       if (SIDEX_SUCCESS == *err){
-                                        SIDEX_TCHAR* sColumnNameTemp;
-                                        SIDEX_INT32 isColLength;
-                                        sidex_Variant_As_String (sVarColumnName, &sColumnNameTemp, &isColLength);
                                         SIDEX_VARIANT sVarCell;
                                         *err = sidex_Variant_Table_GetField (sVariant, rowIndex, sColumnNameTemp, &sVarCell);
                                         if (SIDEX_SUCCESS == *err){
@@ -812,12 +810,12 @@ PyObject*_SidexVariantDecode(SIDEX_VARIANT sVariant, SIDEX_INT32* err){
 void initDateTimeAPI() {
 #if PY_MAJOR_VERSION >= 3
   #if PY_MINOR_VERSION >= 1
-      PyDateTimeAPI = (PyDateTime_CAPI*) PyCapsule_Import("datetime.datetime_CAPI", 0);
+      PyDateTimeAPI = (PyDateTime_CAPI*) PyCapsule_Import((char*)"datetime.datetime_CAPI", 0);
   #else
-      PyDateTimeAPI = (PyDateTime_CAPI*) PyCObject_Import("datetime", "datetime_CAPI");
+      PyDateTimeAPI = (PyDateTime_CAPI*) PyCObject_Import((char*)"datetime", (char*)"datetime_CAPI");
   #endif
 #else
-    PyDateTimeAPI = (PyDateTime_CAPI*) PyCObject_Import("datetime", "datetime_CAPI");
+    PyDateTimeAPI = (PyDateTime_CAPI*) PyCObject_Import((char*)"datetime", (char*)"datetime_CAPI");
 #endif
 }
 
