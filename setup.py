@@ -35,6 +35,7 @@
 
 from distutils.core import setup, Extension
 import sys
+import os
 #-----------------------------------------------------------
 
 if sys.maxsize == 2147483647:
@@ -46,16 +47,37 @@ else:
 
 if sys.platform.startswith('linux'):
     print("linux detected ...")
-    platform_macros = [('LINUX', '')]
+    platform_macros = [('LINUX', ''), ('GCC4', '')]
     compiler_options = ['-std=c++0x']
+    if os.uname()[4].startswith('arm'):
+        print("arm detected ...")
+        platform_macros = platform_macros + [('__STDC_FORMAT_MACROS', '')]
+    else:
+        compiler_options = compiler_options + ['-Wno-attributes',
+                                               '-Wno-conversion-null',
+                                               '-Wno-pointer-arith',
+                                               '-Wno-unused-variable',
+                                               '-Wno-unused-but-set-variable']
 elif sys.platform.startswith('win32'):
     print("windows detected ...")
     platform_macros = []
     compiler_options = []
 elif sys.platform.startswith('darwin'):
     print("OS X detected ...")
-    platform_macros = [('LINUX', '')]
-    compiler_options = ['-std=c++11']
+    platform_macros = [('LINUX', ''), ('GCC4', '')]
+    compiler_options = ['-std=c++11',
+                        '-Wno-attributes',
+                        '-Wno-conversion-null',
+                        '-Wno-null-arithmetic',
+                        '-Wno-unused-variable']
+elif sys.platform.startswith('freebsd'):
+    print("freeBSD detected ...")
+    platform_macros = [('LINUX', ''), ('GCC4', '')]
+    compiler_options = ['-std=c++0x',
+                        '-Wno-attributes',
+                        '-Wno-conversion-null',
+                        '-Wno-pointer-arith',
+                        '-Wno-unused-variable']
 else:
     platform_macros = []
     compiler_options = []
@@ -67,10 +89,12 @@ _sidex_ext = Extension('sidex._sidex',
                                      'src/common',
                                      '%s/include' % sys.prefix,
                                      '%s/include/tml' % sys.prefix,
-                                     '%s/local/include/tml' % sys.prefix],
+                                     '%s/local/include/tml' % sys.prefix,
+                                     '/usr/include/tml'],
                        libraries=[libsidex],
                        library_dirs=['%s/lib' % sys.prefix,
-                                     '%s/local/lib' % sys.prefix],
+                                     '%s/local/lib' % sys.prefix,
+                                     '/usr/lib'],
                        sources=['src/sidex/_sidex_mod.cpp',
                                 'src/sidex/_sidex_conversion.cpp',
                                 'src/common/_py_unicode.cpp'],
@@ -85,10 +109,12 @@ _tml_ext = Extension('tml._tml',
                                    'src/sidex',
                                    '%s/include' % sys.prefix,
                                    '%s/include/tml' % sys.prefix,
-                                   '%s/local/include/tml' % sys.prefix],
+                                   '%s/local/include/tml' % sys.prefix,
+                                   '/usr/include/tml'],
                      libraries=[libsidex, libtmlCore],
                      library_dirs=['%s/lib' % sys.prefix,
-                                   '%s/local/lib' % sys.prefix],
+                                   '%s/local/lib' % sys.prefix,
+                                     '/usr/lib'],
                      sources=['src/tml/_tml_mod.cpp',
                               'src/common/_py_unicode.cpp'],
                      extra_compile_args=compiler_options)
@@ -102,7 +128,7 @@ setup(name='libtml-python',
       long_description='''TML Messaging Suite is a network messaging library
        for rapid development of extensible and scalable interfaces.''',
       license='LGPL 2.1 or later',
-      platforms=["Windows", "Linux", "OS-X"],
+      platforms=["Windows", "Linux", "OS-X", "freeBSD"],
       packages=['sidex', 'tml'],
       package_data={},
       ext_modules=[_sidex_ext, _tml_ext])

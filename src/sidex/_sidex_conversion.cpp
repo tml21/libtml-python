@@ -31,7 +31,7 @@
  *    wobe-systems GmbH
  *    support@libtml.org
  */
- 
+
 #ifndef LINUX
 #include <Windows.h>
 #endif
@@ -79,7 +79,7 @@ SIDEX_VARIANT _sidex_Variant_New_BooleanS(PyObject *args, SIDEX_INT32* err)
     *err = SIDEX_SUCCESS;
 
     if (!PyArg_ParseTuple(args, "O", &pvalue))
-        return NULL;
+        return svariant;
 
     Py_BEGIN_ALLOW_THREADS;
     try {
@@ -110,7 +110,7 @@ SIDEX_VARIANT _sidex_Variant_New_BinaryS(PyObject *args, SIDEX_INT32* err)
     *err = SIDEX_SUCCESS;
 
     if (!PyArg_ParseTuple(args, "s#", &pvalue, &plength))
-        return NULL;
+        return svariant;
 
     Py_BEGIN_ALLOW_THREADS;
     try {
@@ -137,7 +137,7 @@ SIDEX_VARIANT _sidex_Variant_New_FloatS(PyObject *args, SIDEX_INT32* err)
     *err = SIDEX_SUCCESS;
 
     if (!PyArg_ParseTuple(args, "d", &pvalue))
-        return NULL;
+        return svariant;
 
     Py_BEGIN_ALLOW_THREADS;
     try {
@@ -158,13 +158,13 @@ SIDEX_VARIANT _sidex_Variant_New_FloatS(PyObject *args, SIDEX_INT32* err)
  */
 SIDEX_VARIANT _sidex_Variant_New_StringS(PyObject *args, SIDEX_INT32* err)
 {
-    SIDEX_VARIANT svariant;
+    SIDEX_VARIANT svariant = SIDEX_HANDLE_TYPE_NULL;
     char*   pvalue;
 
     *err = SIDEX_SUCCESS;
 
     if (!PyArg_ParseTuple(args, "s", &pvalue))
-        return NULL;
+        return svariant;
 
     Py_BEGIN_ALLOW_THREADS;
     try {
@@ -185,15 +185,15 @@ SIDEX_VARIANT _sidex_Variant_New_StringS(PyObject *args, SIDEX_INT32* err)
  */
 SIDEX_VARIANT _sidex_Variant_New_UnicodeStringS(PyObject *args, SIDEX_INT32* err, PyObject* errOutputObj)
 {
-    SIDEX_VARIANT svariant;
+    SIDEX_VARIANT svariant = SIDEX_HANDLE_TYPE_NULL;
     PyObject*    py_pvalue16;
     SIDEX_TCHAR* pvalue;
     PyObject*    py_pvalue;
 
     *err = SIDEX_SUCCESS;
     if (!PyArg_ParseTuple(args, "O", &py_pvalue))
-        return NULL;
-    if ( _unicodeConversion(py_pvalue, &pvalue, &py_pvalue16, errOutputObj) ) return NULL;
+        return svariant;
+    if ( _unicodeConversion(py_pvalue, &pvalue, &py_pvalue16, errOutputObj) ) return svariant;
 
     Py_BEGIN_ALLOW_THREADS;
     try {
@@ -222,7 +222,7 @@ SIDEX_VARIANT _sidex_Variant_New_IntegerS(PyObject *args, SIDEX_INT32* err)
     *err = SIDEX_SUCCESS;
 
     if (!PyArg_ParseTuple(args, "K", &pvalue))
-        return NULL;
+        return svariant;
 
     Py_BEGIN_ALLOW_THREADS;
     try {
@@ -243,13 +243,13 @@ SIDEX_VARIANT _sidex_Variant_New_IntegerS(PyObject *args, SIDEX_INT32* err)
  */
 SIDEX_VARIANT _sidex_Variant_New_DateTimeS(PyObject *args, SIDEX_INT32* err, PyObject* errOutputObj)
 {
-    SIDEX_VARIANT svariant;
+    SIDEX_VARIANT svariant = SIDEX_HANDLE_TYPE_NULL;
 
     *err = SIDEX_SUCCESS;
 
     PyObject* value;
     if (!PyArg_ParseTuple(args, "O", &value))
-        return NULL;
+        return svariant;
 
     SIDEX_TCHAR dateTimeStringTemp[64];
 
@@ -281,12 +281,14 @@ SIDEX_VARIANT _sidex_Variant_New_DateTimeS(PyObject *args, SIDEX_INT32* err, PyO
       SIDEX_INT64 tuple9         = 0;// Umgehung von Speicherzugriffsverletzung bei Python 3.4 unter LINUX x64
 
       if (!PyArg_ParseTuple(value, "iiiiiiiii", &year64, &month64, &day64, &hours64, &minutes64, &seconds64, &tuple7, &tuple8, &tuple9)){
-          return NULL;
+          return svariant;
       }
       #ifdef LINUX
-        swprintf (dateTimeStringTemp, 64, L"%04lld-%02lld-%02lld %02lld:%02lld:%02lld:%03lld", year64, month64, day64, hours64, minutes64, seconds64, milliseconds64);
+        swprintf (dateTimeStringTemp, 64, L"%04" PRId64 "-%02" PRId64 "-%02" PRId64 " %02" PRId64 ":%02" PRId64 ":%02" PRId64 ":%03" PRId64,
+		  year64, month64, day64, hours64, minutes64, seconds64, milliseconds64);
       #else // LINUX
-        swprintf_s (dateTimeStringTemp, 64, L"%04lld-%02lld-%02lld %02lld:%02lld:%02lld:%03lld", year64, month64, day64, hours64, minutes64, seconds64, milliseconds64);
+        swprintf_s (dateTimeStringTemp, 64, L"%04" PRId64 "-%02" PRId64 "-%02" PRId64 " %02" PRId64 ":%02" PRId64 ":%02" PRId64 ":%03" PRId64,
+		    year64, month64, day64, hours64, minutes64, seconds64, milliseconds64);
       #endif // LINUX
     }
     Py_BEGIN_ALLOW_THREADS;
@@ -451,7 +453,7 @@ SIDEX_VARIANT _PyObjectAsSidexVariantS(PyObject *pValue, SIDEX_INT32* err, PyObj
           else{
             SIDEX_VARIANT vItem = _PyObjectAsSidexVariantS(item, err, errOutputObj);
             if (SIDEX_SUCCESS == *err && SIDEX_HANDLE_TYPE_NULL != vItem){
-              if ( _unicodeConversion(py_sKey, &sKey, &py_sKey16, errOutputObj) ) return NULL;
+              if ( _unicodeConversion(py_sKey, &sKey, &py_sKey16, errOutputObj) ) return SIDEX_HANDLE_TYPE_NULL;
               *err = sidex_Variant_Dict_Set(retValue, sKey, vItem);
               sidex_Variant_DecRef(vItem);
               unicodeFree(py_sKey16, sKey);
@@ -532,7 +534,7 @@ SIDEX_VARIANT _PyObjectAsSidexVariantS(PyObject *pValue, SIDEX_INT32* err, PyObj
 
 ///////////////////////////////////////////////////////////////////////////
 // See http://en.wikipedia.org/wiki/Determination_of_the_day_of_the_week
-// Zeller’s algorithm to calc day of week
+// Zeller's algorithm to calc day of week
 int DayOfWeek (int day, int month, int year){
 
   int PADDING[7] = {5, 6, 0, 1, 2, 3, 4};
@@ -562,22 +564,18 @@ int DayOfWeek (int day, int month, int year){
 }
 
 ///////////////////////////////////////////////////////////////////////////
-// Calc day of week
+// Calc day of year
 int DayOfYear (int day, int month, int year){
 
   int PADDING[12] = {0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334};
 
-  int leap = 1;
-  if (year % 4){
-    leap = 0;
-  }
-  else{
-    if (0 == (year % 100)){
-      if (0 == (year % 400)){
-        leap = 1;
-      }
-      else{
-        leap = 0;
+  int leap = 0;
+  if (month >= 3){  // the leap year affects only march and higher (in this function)
+    if (0 == (year % 4)){
+      if (0 == (year % 100)){
+        if (0 == (year % 400)){
+          leap = 1;
+        }
       }
     }
   }
@@ -762,12 +760,10 @@ PyObject*_SidexVariantDecode(SIDEX_VARIANT sVariant, SIDEX_INT32* err){
                                     SIDEX_VARIANT sVarColumnName;
                                     *err = sidex_Variant_List_Get (sVarColumnNames, columnIndex, &sVarColumnName);
                                     if (SIDEX_SUCCESS == *err){
-                                      PyObject* pyColumnName = NULL;
-                                      pyColumnName = _SidexVariantDecode(sVarColumnName, err);
+                                      SIDEX_TCHAR* sColumnNameTemp;
+                                      SIDEX_INT32 isColLength;
+                                      *err = sidex_Variant_As_String (sVarColumnName, &sColumnNameTemp, &isColLength);
                                       if (SIDEX_SUCCESS == *err){
-                                        SIDEX_TCHAR* sColumnNameTemp;
-                                        SIDEX_INT32 isColLength;
-                                        sidex_Variant_As_String (sVarColumnName, &sColumnNameTemp, &isColLength);
                                         SIDEX_VARIANT sVarCell;
                                         *err = sidex_Variant_Table_GetField (sVariant, rowIndex, sColumnNameTemp, &sVarCell);
                                         if (SIDEX_SUCCESS == *err){
@@ -814,12 +810,12 @@ PyObject*_SidexVariantDecode(SIDEX_VARIANT sVariant, SIDEX_INT32* err){
 void initDateTimeAPI() {
 #if PY_MAJOR_VERSION >= 3
   #if PY_MINOR_VERSION >= 1
-      PyDateTimeAPI = (PyDateTime_CAPI*) PyCapsule_Import("datetime.datetime_CAPI", 0);
+      PyDateTimeAPI = (PyDateTime_CAPI*) PyCapsule_Import((char*)"datetime.datetime_CAPI", 0);
   #else
-      PyDateTimeAPI = (PyDateTime_CAPI*) PyCObject_Import("datetime", "datetime_CAPI");
+      PyDateTimeAPI = (PyDateTime_CAPI*) PyCObject_Import((char*)"datetime", (char*)"datetime_CAPI");
   #endif
 #else
-    PyDateTimeAPI = (PyDateTime_CAPI*) PyCObject_Import("datetime", "datetime_CAPI");
+    PyDateTimeAPI = (PyDateTime_CAPI*) PyCObject_Import((char*)"datetime", (char*)"datetime_CAPI");
 #endif
 }
 

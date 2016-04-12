@@ -90,19 +90,19 @@ struct PythonSenderStrmCallbackData{
  *                                 command dispatch dictionary
  *************************************************************************************
  */
-static SIDEX_VARIANT m_customDispatchDict         = TML_HANDLE_TYPE_NULL;
-static SIDEX_VARIANT m_cmdDispatchDict            = TML_HANDLE_TYPE_NULL;
-static SIDEX_VARIANT m_deleteCmdDict              = TML_HANDLE_TYPE_NULL;
-static SIDEX_VARIANT m_balOnBusyStatusRequestDict = TML_HANDLE_TYPE_NULL;
-static SIDEX_VARIANT m_balOnCalculationDict       = TML_HANDLE_TYPE_NULL;
-static SIDEX_VARIANT m_balOnPeerRegisterDict      = TML_HANDLE_TYPE_NULL;
-static SIDEX_VARIANT m_balOnPopulateDict          = TML_HANDLE_TYPE_NULL;
-static SIDEX_VARIANT m_evtOnErrorDict             = TML_HANDLE_TYPE_NULL;
-static SIDEX_VARIANT m_evtOnPeerRegisterDict      = TML_HANDLE_TYPE_NULL;
-static SIDEX_VARIANT m_evtOnPopulateDict          = TML_HANDLE_TYPE_NULL;
-static SIDEX_VARIANT m_evtOnQueueOverflowDict     = TML_HANDLE_TYPE_NULL;
-static SIDEX_VARIANT m_receiverStrmDict           = TML_HANDLE_TYPE_NULL;
-static SIDEX_VARIANT m_senderStrmDict             = TML_HANDLE_TYPE_NULL;
+static SIDEX_VARIANT m_customDispatchDict         = SIDEX_HANDLE_TYPE_NULL;
+static SIDEX_VARIANT m_cmdDispatchDict            = SIDEX_HANDLE_TYPE_NULL;
+static SIDEX_VARIANT m_deleteCmdDict              = SIDEX_HANDLE_TYPE_NULL;
+static SIDEX_VARIANT m_balOnBusyStatusRequestDict = SIDEX_HANDLE_TYPE_NULL;
+static SIDEX_VARIANT m_balOnCalculationDict       = SIDEX_HANDLE_TYPE_NULL;
+static SIDEX_VARIANT m_balOnPeerRegisterDict      = SIDEX_HANDLE_TYPE_NULL;
+static SIDEX_VARIANT m_balOnPopulateDict          = SIDEX_HANDLE_TYPE_NULL;
+static SIDEX_VARIANT m_evtOnErrorDict             = SIDEX_HANDLE_TYPE_NULL;
+static SIDEX_VARIANT m_evtOnPeerRegisterDict      = SIDEX_HANDLE_TYPE_NULL;
+static SIDEX_VARIANT m_evtOnPopulateDict          = SIDEX_HANDLE_TYPE_NULL;
+static SIDEX_VARIANT m_evtOnQueueOverflowDict     = SIDEX_HANDLE_TYPE_NULL;
+static SIDEX_VARIANT m_receiverStrmDict           = SIDEX_HANDLE_TYPE_NULL;
+static SIDEX_VARIANT m_senderStrmDict             = SIDEX_HANDLE_TYPE_NULL;
 
 /*
  *************************************************************************************
@@ -140,8 +140,8 @@ static TML_INT32 getCommandDispatchCallbackData(TML_TCHAR* pProfile, TML_COMMAND
                                                     PyObject* pCBFunc, PyObject* pCBData,
                                                     PythonCallbackData** commandDispatchCallbackData){
     TML_INT32             err = TML_SUCCESS;
-    SIDEX_VARIANT profileDict = TML_HANDLE_TYPE_NULL;
-    SIDEX_VARIANT vData       = TML_HANDLE_TYPE_NULL;
+    SIDEX_VARIANT profileDict = SIDEX_HANDLE_TYPE_NULL;
+    SIDEX_VARIANT vData       = SIDEX_HANDLE_TYPE_NULL;
     err = sidex_Variant_Dict_Get(m_cmdDispatchDict, pProfile, &profileDict);
     if (TML_SUCCESS != err){
       profileDict = sidex_Variant_New_Dict();
@@ -192,7 +192,7 @@ static TML_INT32 getCallbackDataFromDict(TML_TCHAR* pProfile,
                                                     PyObject* pCBFunc, PyObject* pCBData,
                                                     PythonCallbackData** callbackData, SIDEX_VARIANT dict){
   TML_INT32             err = TML_SUCCESS;
-  SIDEX_VARIANT vData       = TML_HANDLE_TYPE_NULL;
+  SIDEX_VARIANT vData       = SIDEX_HANDLE_TYPE_NULL;
   err = sidex_Variant_Dict_Get(dict, pProfile, &vData);
   SIDEX_INT64 iValue;
   if (TML_SUCCESS != err){
@@ -223,20 +223,20 @@ static TML_INT32 getCallbackDataFromDict(TML_TCHAR* pProfile,
  *----------------------------------------------------------------
  */
 static TML_INT32 getRecStrmCallbackDataFromDict(TML_INT64 iID,
-                                                    PyObject* pCB_Rec_Strm_DLD_Block_Func, PyObject* pCB_Rec_Strm_DLD_Block_Data,
-                                                    PyObject* pCB_Rec_Strm_DLD_Finish_Func, PyObject* pCB_Rec_Strm_DLD_Finish_Data,
-                                                    PythonReceiverStrmCallbackData** callbackData, SIDEX_VARIANT dict){
+                                                PyObject* pCB_Rec_Strm_DLD_Block_Func, PyObject* pCB_Rec_Strm_DLD_Block_Data,
+                                                PyObject* pCB_Rec_Strm_DLD_Finish_Func, PyObject* pCB_Rec_Strm_DLD_Finish_Data,
+                                                PythonReceiverStrmCallbackData** callbackData, SIDEX_VARIANT dict){
   TML_INT32     err    = TML_SUCCESS;
-  SIDEX_VARIANT vData  = TML_HANDLE_TYPE_NULL;
+  SIDEX_VARIANT vData  = SIDEX_HANDLE_TYPE_NULL;
 
   char sKey[128];
 #ifdef LINUX
-  sprintf (sKey, "%lld", iID);
+  sprintf (sKey, "%" PRId64, iID);
 #else // LINUX
   #if _MSC_VER > 1500
-    sprintf_s (sKey, 128, "%lld", iID);
+    sprintf_s (sKey, 128, "%" PRId64, iID);
   #else
-    sprintf (sKey, "%lld", iID);
+    sprintf (sKey, "%" PRId64, iID);
   #endif
 #endif // LINUX
 
@@ -285,16 +285,16 @@ static TML_INT32 getSndStrmCallbackDataFromDict(TML_INT64 iID,
                                                     bool bOnWrite, PyObject* pCB_OnWrite_Func,       PyObject* pCB_OnWrite_Data,
                                                     PythonSenderStrmCallbackData** callbackData, SIDEX_VARIANT dict){
   TML_INT32     err    = TML_SUCCESS;
-  SIDEX_VARIANT vData  = TML_HANDLE_TYPE_NULL;
+  SIDEX_VARIANT vData  = SIDEX_HANDLE_TYPE_NULL;
 
   char sKey[128];
 #ifdef LINUX
-  sprintf (sKey, "%lld", iID);
+  sprintf (sKey, "%" PRId64, iID);
 #else // LINUX
   #if _MSC_VER > 1500
-    sprintf_s (sKey, 128, "%lld", iID);
+    sprintf_s (sKey, 128, "%" PRId64, iID);
   #else
-    sprintf (sKey, "%lld", iID);
+    sprintf (sKey, "%" PRId64, iID);
   #endif
 #endif // LINUX
 
@@ -411,14 +411,14 @@ static void releaseCommandDispatchCallbackData(bool bReleaseDict){
   TML_INT32 err = TML_SUCCESS;
   err = sidex_Variant_Dict_First(m_cmdDispatchDict);
   while (TML_SUCCESS == err){
-    SIDEX_VARIANT profileDict = TML_HANDLE_TYPE_NULL;
+    SIDEX_VARIANT profileDict = SIDEX_HANDLE_TYPE_NULL;
     wchar_t*      sProfile;
     err = sidex_Variant_Dict_Next(m_cmdDispatchDict, &sProfile, &profileDict);
     if (TML_SUCCESS == err){
       err = sidex_Variant_Dict_First(profileDict);
       while (TML_SUCCESS == err){
         wchar_t*      sCmd;
-        SIDEX_VARIANT vCmd = TML_HANDLE_TYPE_NULL;
+        SIDEX_VARIANT vCmd = SIDEX_HANDLE_TYPE_NULL;
         err = sidex_Variant_Dict_Next(profileDict, &sCmd, &vCmd);
         if (TML_SUCCESS == err){
           SIDEX_INT64 iValue = 0;
@@ -452,15 +452,14 @@ static void releaseCommandDispatchCallbackData(bool bReleaseDict){
  */
 static void releaseCommandDispatchCallbackData4Profile(TML_TCHAR* pProfile){
   TML_INT32 err = TML_SUCCESS;
-  SIDEX_VARIANT profileDict = TML_HANDLE_TYPE_NULL;
-  SIDEX_VARIANT vData       = TML_HANDLE_TYPE_NULL;
+  SIDEX_VARIANT profileDict = SIDEX_HANDLE_TYPE_NULL;
   err = sidex_Variant_Dict_Get(m_cmdDispatchDict, pProfile, &profileDict);
   if (TML_SUCCESS == err){
     err = sidex_Variant_Dict_First(profileDict);
     if (TML_SUCCESS == err){
       do{
         wchar_t*      sCmd;
-        SIDEX_VARIANT vCmd = TML_HANDLE_TYPE_NULL;
+        SIDEX_VARIANT vCmd = SIDEX_HANDLE_TYPE_NULL;
         err = sidex_Variant_Dict_Next(profileDict, &sCmd, &vCmd);
         if (TML_SUCCESS == err){
           SIDEX_INT64 iValue = 0;
@@ -493,7 +492,7 @@ static void releaseCallbackDataDict(SIDEX_VARIANT dict, bool bReleaseDict){
   err = sidex_Variant_Dict_First(dict);
   while (TML_SUCCESS == err){
     wchar_t*      sProfile;
-    SIDEX_VARIANT vCmd = TML_HANDLE_TYPE_NULL;
+    SIDEX_VARIANT vCmd = SIDEX_HANDLE_TYPE_NULL;
     err = sidex_Variant_Dict_Next(dict, &sProfile, &vCmd);
     if (TML_SUCCESS == err){
       SIDEX_INT64 iValue = 0;
@@ -522,7 +521,7 @@ static void releaseCallbackDataDict(SIDEX_VARIANT dict, bool bReleaseDict){
 static void releaseCallbackDataDict4Profile(SIDEX_VARIANT dict, TML_TCHAR* pProfile){
   TML_INT32 err = TML_SUCCESS;
 
-  SIDEX_VARIANT vData       = TML_HANDLE_TYPE_NULL;
+  SIDEX_VARIANT vData       = SIDEX_HANDLE_TYPE_NULL;
   err = sidex_Variant_Dict_Get(dict, pProfile, &vData);
   if (TML_SUCCESS == err){
     SIDEX_INT64 iValue;
@@ -550,16 +549,16 @@ static void removeRecStrmCallbackDataFromDict(SIDEX_VARIANT dict, TML_INT64 iID)
 
   char sKey[128];
 #ifdef LINUX
-  sprintf (sKey, "%lld", iID);
+  sprintf (sKey, "%" PRId64, iID);
 #else // LINUX
   #if _MSC_VER > 1500
-    sprintf_s (sKey, 128, "%lld", iID);
+    sprintf_s (sKey, 128, "%" PRId64, iID);
   #else
-    sprintf (sKey, "%lld", iID);
+    sprintf (sKey, "%" PRId64, iID);
   #endif
 #endif // LINUX
 
-  SIDEX_VARIANT vCmd = TML_HANDLE_TYPE_NULL;
+  SIDEX_VARIANT vCmd = SIDEX_HANDLE_TYPE_NULL;
   err = sidex_Variant_Dict_Get_A(dict, sKey, &vCmd);
   if (TML_SUCCESS == err){
     SIDEX_INT64 iValue = 0;
@@ -589,7 +588,7 @@ static void removeAllRecStrmCallbackDataFromDict(SIDEX_VARIANT dict, bool bRelea
   err = sidex_Variant_Dict_First(dict);
   while (TML_SUCCESS == err){
     wchar_t*      sProfile;
-    SIDEX_VARIANT vCmd = TML_HANDLE_TYPE_NULL;
+    SIDEX_VARIANT vCmd = SIDEX_HANDLE_TYPE_NULL;
     err = sidex_Variant_Dict_Next(dict, &sProfile, &vCmd);
     if (TML_SUCCESS == err){
       SIDEX_INT64 iValue = 0;
@@ -623,16 +622,16 @@ static void removeSndStrmCallbackDataFromDict(SIDEX_VARIANT dict, TML_INT64 iID)
 
   char sKey[128];
 #ifdef LINUX
-  sprintf (sKey, "%lld", iID);
+  sprintf (sKey, "%" PRId64, iID);
 #else // LINUX
   #if _MSC_VER > 1500
-    sprintf_s (sKey, 128, "%lld", iID);
+    sprintf_s (sKey, 128, "%" PRId64, iID);
   #else
-    sprintf (sKey, "%lld", iID);
+    sprintf (sKey, "%" PRId64, iID);
   #endif
 #endif // LINUX
 
-  SIDEX_VARIANT vCmd = TML_HANDLE_TYPE_NULL;
+  SIDEX_VARIANT vCmd = SIDEX_HANDLE_TYPE_NULL;
   err = sidex_Variant_Dict_Get_A(dict, sKey, &vCmd);
   if (TML_SUCCESS == err){
     SIDEX_INT64 iValue = 0;
@@ -686,7 +685,7 @@ static void removeAllSndStrmCallbackDataFromDict(SIDEX_VARIANT dict, bool bRelea
   err = sidex_Variant_Dict_First(dict);
   while (TML_SUCCESS == err){
     wchar_t*      sProfile;
-    SIDEX_VARIANT vCmd = TML_HANDLE_TYPE_NULL;
+    SIDEX_VARIANT vCmd = SIDEX_HANDLE_TYPE_NULL;
     err = sidex_Variant_Dict_Next(dict, &sProfile, &vCmd);
     if (TML_SUCCESS == err){
       SIDEX_INT64 iValue = 0;
@@ -1990,19 +1989,19 @@ static PyObject * _tml_Cmd_Free(PyObject *self, PyObject *args)
         TML_POINTER pCBData;
 
         err = tml_Cmd_Registered_Progress (shandle, &pCBFuncProgress, &pCBData);
-        if (TML_HANDLE_TYPE_NULL != pCBData){
+        if (NULL != pCBData){
           progressCallbackData = (PythonCallbackData*) pCBData;
           Py_XDECREF(progressCallbackData->pCBFunc);
           Py_XDECREF(progressCallbackData->pCBData);
         }
         err = tml_Cmd_Registered_StatusReply (shandle, &pCBFuncStatus, &pCBData);
-        if (TML_HANDLE_TYPE_NULL != pCBData){
+        if (NULL != pCBData){
           statusCallbackData = (PythonCallbackData*) pCBData;
           Py_XDECREF(statusCallbackData->pCBFunc);
           Py_XDECREF(statusCallbackData->pCBData);
         }
         err = tml_Cmd_Registered_CommandReady (shandle, &pCBFuncCommandReady, &pCBData);
-        if (TML_HANDLE_TYPE_NULL != pCBData){
+        if (NULL != pCBData){
           commandReadyCallbackData = (PythonCallbackData*) pCBData;
           Py_XDECREF(commandReadyCallbackData->pCBFunc);
           Py_XDECREF(commandReadyCallbackData->pCBData);
@@ -2809,7 +2808,7 @@ static PyObject * _tml_Cmd_Register_Progress(PyObject *self, PyObject *args)
 
             err = tml_Cmd_Registered_Progress (cmdHandle, &pCBFuncProgress, &pCBDataProgress);
             if (TML_SUCCESS == err){
-                if (TML_HANDLE_TYPE_NULL != pCBDataProgress){
+                if (NULL != pCBDataProgress){
                     progressCallbackData = (PythonCallbackData*) pCBDataProgress;
                     Py_XDECREF(progressCallbackData->pCBFunc);
                     Py_XDECREF(progressCallbackData->pCBData);
@@ -2859,7 +2858,7 @@ static PyObject * _tml_Cmd_Registered_Progress(PyObject *self, PyObject *args)
         try {
             err = tml_Cmd_Registered_Progress (cmdHandle, &pCBFuncProgressIntern, &pCBDataProgressIntern);
             if (TML_SUCCESS == err){
-                if (TML_HANDLE_TYPE_NULL != pCBDataProgressIntern){
+                if (NULL != pCBDataProgressIntern){
                     PythonCallbackData* progressCallbackData = (PythonCallbackData*) pCBDataProgressIntern;
                     pCBFuncProgress = progressCallbackData->pCBFunc;
                     pCBDataProgress = progressCallbackData->pCBData;
@@ -2918,7 +2917,7 @@ static PyObject * _tml_Cmd_Register_StatusReply(PyObject *self, PyObject *args)
 
             err = tml_Cmd_Registered_StatusReply (cmdHandle, &pCBFuncStatusReply, &pCBDataStatusReply);
             if (TML_SUCCESS == err){
-                if (TML_HANDLE_TYPE_NULL != pCBDataStatusReply){
+                if (NULL != pCBDataStatusReply){
                     statusReplyCallbackData = (PythonCallbackData*) pCBDataStatusReply;
                     Py_XDECREF(statusReplyCallbackData->pCBFunc);
                     Py_XDECREF(statusReplyCallbackData->pCBData);
@@ -2967,7 +2966,7 @@ static PyObject * _tml_Cmd_Registered_StatusReply(PyObject *self, PyObject *args
         try {
             err = tml_Cmd_Registered_StatusReply (cmdHandle, &pCBFuncStatusReplyIntern, &pCBDataStatusReplyIntern);
             if (TML_SUCCESS == err){
-                if (TML_HANDLE_TYPE_NULL != pCBDataStatusReplyIntern){
+                if (NULL != pCBDataStatusReplyIntern){
                     PythonCallbackData* statusReplyCallbackData = (PythonCallbackData*) pCBDataStatusReplyIntern;
                     pCBFuncStatusReply = statusReplyCallbackData->pCBFunc;
                     pCBDataStatusReply = statusReplyCallbackData->pCBData;
@@ -3027,7 +3026,7 @@ static PyObject * _tml_Cmd_Register_CommandReady(PyObject *self, PyObject *args)
 
             err = tml_Cmd_Registered_CommandReady (cmdHandle, &pCBFuncCommandReady, &pCBDataCommandReady);
             if (TML_SUCCESS == err){
-                if (TML_HANDLE_TYPE_NULL != pCBDataCommandReady){
+                if (NULL != pCBDataCommandReady){
                     commandReadyCallbackData = (PythonCallbackData*) pCBDataCommandReady;
                     Py_XDECREF(commandReadyCallbackData->pCBFunc);
                     Py_XDECREF(commandReadyCallbackData->pCBData);
@@ -3076,7 +3075,7 @@ static PyObject * _tml_Cmd_Registered_CommandReady(PyObject *self, PyObject *arg
         try {
             err = tml_Cmd_Registered_CommandReady (cmdHandle, &pCBFuncCommandReadyIntern, &pCBDataCommandReadyIntern);
             if (TML_SUCCESS == err){
-                if (TML_HANDLE_TYPE_NULL != pCBDataCommandReadyIntern){
+                if (NULL != pCBDataCommandReadyIntern){
                     PythonCallbackData* commandReadyCallbackData = (PythonCallbackData*) pCBDataCommandReadyIntern;
                     pCBFuncCommandReady = commandReadyCallbackData->pCBFunc;
                     pCBDataCommandReady = commandReadyCallbackData->pCBData;
@@ -3748,25 +3747,25 @@ static PyObject * _tml_Profile_Unregister(PyObject *self, PyObject *args)
         ////////////////////////////
         // deregister all callbacks:
         // m_customDispatchDict         
-        err = tml_Profile_Set_OnCustomDispatch(shandle, pProfile, TML_HANDLE_TYPE_NULL, TML_HANDLE_TYPE_NULL);
+        err = tml_Profile_Set_OnCustomDispatch(shandle, pProfile, NULL, NULL);
 
-        if (err == TML_SUCCESS) err = tml_Profile_Set_OnDeleteCmd(shandle, pProfile, TML_HANDLE_TYPE_NULL, TML_HANDLE_TYPE_NULL);
+        if (err == TML_SUCCESS) err = tml_Profile_Set_OnDeleteCmd(shandle, pProfile, NULL, NULL);
         // m_balOnBusyStatusRequestDict 
-        if (err == TML_SUCCESS) err = tml_Bal_Set_OnBusyStatusRequest(shandle, pProfile, TML_HANDLE_TYPE_NULL, TML_HANDLE_TYPE_NULL);
+        if (err == TML_SUCCESS) err = tml_Bal_Set_OnBusyStatusRequest(shandle, pProfile, NULL, NULL);
         // m_balOnCalculationDict       
-        if (err == TML_SUCCESS) err = tml_Bal_Set_OnCalculation(shandle, pProfile, TML_HANDLE_TYPE_NULL, TML_HANDLE_TYPE_NULL);
+        if (err == TML_SUCCESS) err = tml_Bal_Set_OnCalculation(shandle, pProfile, NULL, NULL);
         // m_balOnPeerRegisterDict      
-        if (err == TML_SUCCESS) err =  tml_Bal_Set_OnPeerRegister(shandle, pProfile, TML_HANDLE_TYPE_NULL, TML_HANDLE_TYPE_NULL);
+        if (err == TML_SUCCESS) err =  tml_Bal_Set_OnPeerRegister(shandle, pProfile, NULL, NULL);
         // m_balOnPopulateDict          
-        if (err == TML_SUCCESS) err = tml_Bal_Set_OnPopulate(shandle, pProfile, TML_HANDLE_TYPE_NULL, TML_HANDLE_TYPE_NULL);
+        if (err == TML_SUCCESS) err = tml_Bal_Set_OnPopulate(shandle, pProfile, NULL, NULL);
         // m_evtOnErrorDict             
-        if (err == TML_SUCCESS) err =  tml_Evt_Set_OnError(shandle, pProfile, TML_HANDLE_TYPE_NULL, TML_HANDLE_TYPE_NULL);
+        if (err == TML_SUCCESS) err =  tml_Evt_Set_OnError(shandle, pProfile, NULL, NULL);
         // m_evtOnPeerRegisterDict      
-        if (err == TML_SUCCESS) err = tml_Evt_Set_OnPeerRegister(shandle, pProfile, TML_HANDLE_TYPE_NULL, TML_HANDLE_TYPE_NULL);
+        if (err == TML_SUCCESS) err = tml_Evt_Set_OnPeerRegister(shandle, pProfile, NULL, NULL);
         // m_evtOnPopulateDict          
-        if (err == TML_SUCCESS) err =  tml_Evt_Set_OnPopulate(shandle, pProfile, TML_HANDLE_TYPE_NULL, TML_HANDLE_TYPE_NULL);
+        if (err == TML_SUCCESS) err =  tml_Evt_Set_OnPopulate(shandle, pProfile, NULL, NULL);
         // m_evtOnQueueOverflowDict     
-        if (err == TML_SUCCESS) err =  tml_Evt_Set_OnQueueOverflow(shandle, pProfile, TML_HANDLE_TYPE_NULL, TML_HANDLE_TYPE_NULL);
+        if (err == TML_SUCCESS) err =  tml_Evt_Set_OnQueueOverflow(shandle, pProfile, NULL, NULL);
         // Now unregister:
         if (err == TML_SUCCESS) err = tml_Profile_Unregister(shandle, pProfile);
     }
@@ -4432,7 +4431,7 @@ static PyObject * _tml_Bal_Set_OnPeerRegister(PyObject *self, PyObject *args)
             }
             else{
               // It's not callable / reset the callback method:
-              err = tml_Bal_Set_OnPeerRegister(shandle, pProfile, TML_HANDLE_TYPE_NULL, TML_HANDLE_TYPE_NULL);
+              err = tml_Bal_Set_OnPeerRegister(shandle, pProfile, NULL, NULL);
             }
           }
           catch (...) {
@@ -4959,7 +4958,7 @@ static PyObject * _tml_Evt_Set_OnPeerRegister(PyObject *self, PyObject *args)
             }
             else{
               // It's not callable / reset the callback method:
-              err = tml_Evt_Set_OnPeerRegister(shandle, pProfile, TML_HANDLE_TYPE_NULL, TML_HANDLE_TYPE_NULL);
+              err = tml_Evt_Set_OnPeerRegister(shandle, pProfile, NULL, NULL);
             }
           }
           catch (...) {
@@ -5620,13 +5619,13 @@ static PyObject * _tml_SndStream_Close(PyObject *self, PyObject *args)
 
     Py_BEGIN_ALLOW_THREADS;
     try {
-      err = tml_SndStream_Register_GetSize(shandle, iID, TML_HANDLE_TYPE_NULL, TML_HANDLE_TYPE_NULL);
-      if (err == TML_SUCCESS) err = tml_SndStream_Register_Close(shandle, iID, TML_HANDLE_TYPE_NULL, TML_HANDLE_TYPE_NULL);
-      if (err == TML_SUCCESS) err = tml_SndStream_Register_GetPosition(shandle, iID, TML_HANDLE_TYPE_NULL, TML_HANDLE_TYPE_NULL);
-      if (err == TML_SUCCESS) err = tml_SndStream_Register_OnError(shandle, iID, TML_HANDLE_TYPE_NULL, TML_HANDLE_TYPE_NULL);
-      if (err == TML_SUCCESS) err = tml_SndStream_Register_Read(shandle, iID, TML_HANDLE_TYPE_NULL, TML_HANDLE_TYPE_NULL);
-      if (err == TML_SUCCESS) err = tml_SndStream_Register_Write(shandle, iID, TML_HANDLE_TYPE_NULL, TML_HANDLE_TYPE_NULL);
-      if (err == TML_SUCCESS) err = tml_SndStream_Register_Seek(shandle, iID, TML_HANDLE_TYPE_NULL, TML_HANDLE_TYPE_NULL);
+      err = tml_SndStream_Register_GetSize(shandle, iID, NULL, NULL);
+      if (err == TML_SUCCESS) err = tml_SndStream_Register_Close(shandle, iID, NULL, NULL);
+      if (err == TML_SUCCESS) err = tml_SndStream_Register_GetPosition(shandle, iID, NULL, NULL);
+      if (err == TML_SUCCESS) err = tml_SndStream_Register_OnError(shandle, iID, NULL, NULL);
+      if (err == TML_SUCCESS) err = tml_SndStream_Register_Read(shandle, iID, NULL, NULL);
+      if (err == TML_SUCCESS) err = tml_SndStream_Register_Write(shandle, iID, NULL, NULL);
+      if (err == TML_SUCCESS) err = tml_SndStream_Register_Seek(shandle, iID, NULL, NULL);
       // Now close the stream:
       if (err == TML_SUCCESS) err =  tml_SndStream_Close(shandle, iID);
     }
@@ -6215,12 +6214,6 @@ struct module_state {
 
 #if PY_MAJOR_VERSION >= 3
 #define GETSTATE(m) ((struct module_state*)PyModule_GetState(m))
-#else
-#define GETSTATE(m) (&_state)
-static struct module_state _state;
-#endif
-
-#if PY_MAJOR_VERSION >= 3
 
 static int _tml_traverse(PyObject *m, visitproc visit, void *arg) {
     Py_VISIT(GETSTATE(m)->error);
@@ -6267,11 +6260,11 @@ PyMODINIT_FUNC init_tml(void)
         INITERROR;
 
     // create and register exception
-    tmlError = PyErr_NewException("tml.error", NULL, NULL);
+    tmlError = PyErr_NewException((char*)"tml.error", NULL, NULL);
     Py_INCREF(tmlError);
     PyModule_AddObject(m, "tmlError", tmlError);
 
-    tmlIndexError = PyErr_NewException("tml.error", NULL, NULL);
+    tmlIndexError = PyErr_NewException((char*)"tml.error", NULL, NULL);
     Py_INCREF(tmlIndexError);
     PyModule_AddObject(m, "tmlIndexError", tmlIndexError);
 
