@@ -39,11 +39,11 @@ import os
 #-----------------------------------------------------------
 
 if sys.maxsize == 2147483647:
-    libsidex = 'sidex11'
-    libtmlCore = 'tmlcore11'
+    libsidex = 'sidex12'
+    libtmlCore = 'tmlcore12'
 else:
-    libsidex = 'sidex11_64'
-    libtmlCore = 'tmlcore11_64'
+    libsidex = 'sidex12_64'
+    libtmlCore = 'tmlcore12_64'
 
 if sys.platform.startswith('linux'):
     print("linux detected ...")
