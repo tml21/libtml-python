@@ -61,7 +61,9 @@ if sys.platform.startswith('linux'):
 elif sys.platform.startswith('win32'):
     print("windows detected ...")
     platform_macros = []
-    compiler_options = []
+    compiler_options = [
+                        '/EHsc'
+                       ]
 elif sys.platform.startswith('darwin'):
     print("OS X detected ...")
     platform_macros = [('LINUX', ''), ('GCC4', '')]
@@ -79,6 +81,7 @@ elif sys.platform.startswith('freebsd'):
                         '-Wno-pointer-arith',
                         '-Wno-unused-variable']
 else:
+    print("UNKNOWN PLATFORM ...")
     platform_macros = []
     compiler_options = []
 
@@ -87,6 +90,8 @@ _sidex_ext = Extension('sidex._sidex',
                        include_dirs=['%s/include/python%s.%s' % (sys.prefix, sys.version_info[0], sys.version_info[1]),
                                      'src/sidex',
                                      'src/common',
+                                     '../libtml-c/sidex/src',
+                                     '../libtml-c/common/src',
                                      '%s/include' % sys.prefix,
                                      '%s/include/tml' % sys.prefix,
                                      '%s/local/include/tml' % sys.prefix,
@@ -94,7 +99,8 @@ _sidex_ext = Extension('sidex._sidex',
                        libraries=[libsidex],
                        library_dirs=['%s/lib' % sys.prefix,
                                      '%s/local/lib' % sys.prefix,
-                                     '/usr/lib'],
+                                     '/usr/lib',
+                                     '../libtml-c/build/win_x86-32/sidex/Release'],
                        sources=['src/sidex/_sidex_mod.cpp',
                                 'src/sidex/_sidex_conversion.cpp',
                                 'src/common/_py_unicode.cpp'],
@@ -107,6 +113,9 @@ _tml_ext = Extension('tml._tml',
                                    'src/tml',
                                    'src/common',
                                    'src/sidex',
+                                   '../libtml-c/tml/src',
+                                   '../libtml-c/common/src',
+                                   '../libtml-c/sidex/src',
                                    '%s/include' % sys.prefix,
                                    '%s/include/tml' % sys.prefix,
                                    '%s/local/include/tml' % sys.prefix,
@@ -114,7 +123,9 @@ _tml_ext = Extension('tml._tml',
                      libraries=[libsidex, libtmlCore],
                      library_dirs=['%s/lib' % sys.prefix,
                                    '%s/local/lib' % sys.prefix,
-                                     '/usr/lib'],
+                                     '/usr/lib',
+                                     '../libtml-c/build/win_x86-32/sidex/Release',
+                                     '../libtml-c/build/win_x86-32/tml/Release'],
                      sources=['src/tml/_tml_mod.cpp',
                               'src/common/_py_unicode.cpp'],
                      extra_compile_args=compiler_options)
