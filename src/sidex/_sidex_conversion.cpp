@@ -34,6 +34,7 @@
 
 #ifndef LINUX
 #include <Windows.h>
+#define PRId64 L"lld"
 #endif
 #include <wchar.h>
 #include <sidex.h>
@@ -287,7 +288,7 @@ SIDEX_VARIANT _sidex_Variant_New_DateTimeS(PyObject *args, SIDEX_INT32* err, PyO
         swprintf (dateTimeStringTemp, 64, L"%04" PRId64 "-%02" PRId64 "-%02" PRId64 " %02" PRId64 ":%02" PRId64 ":%02" PRId64 ":%03" PRId64,
 		  year64, month64, day64, hours64, minutes64, seconds64, milliseconds64);
       #else // LINUX
-        swprintf_s (dateTimeStringTemp, 64, L"%04" PRId64 "-%02" PRId64 "-%02" PRId64 " %02" PRId64 ":%02" PRId64 ":%02" PRId64 ":%03" PRId64,
+        swprintf_s (dateTimeStringTemp, 64, L"%04" PRId64 L"-%02" PRId64 L"-%02" PRId64 L" %02" PRId64 L":%02" PRId64 L":%02" PRId64 L":%03" PRId64,
 		    year64, month64, day64, hours64, minutes64, seconds64, milliseconds64);
       #endif // LINUX
     }

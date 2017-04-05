@@ -36,6 +36,7 @@
 #include <string.h>
 #else
 #include <Windows.h>
+#define PRId32 "ld"
 #endif
 #include <sidex.h>
 #include <Python.h>
