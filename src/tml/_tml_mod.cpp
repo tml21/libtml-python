@@ -233,10 +233,13 @@ static TML_INT32 getRecStrmCallbackDataFromDict(TML_INT64 iID,
 #ifdef LINUX
   sprintf (sKey, "%" PRId64, iID);
 #else // LINUX
+  char sFormat[5];
+  sFormat[0] = '%'; sFormat[1] = 'l'; sFormat[2] = 'd'; sFormat[3] = '\0';
+  if (sizeof(void*) == 8){ sFormat[2] = 'l'; sFormat[3] = 'd'; sFormat[4] = '\0'; }
   #if _MSC_VER > 1500
-    sprintf_s (sKey, 128, "%" PRId64, iID);
+    sprintf_s (sKey, 128, sFormat, iID);
   #else
-    sprintf (sKey, "%" PRId64, iID);
+    sprintf (sKey, sFormat, iID);
   #endif
 #endif // LINUX
 
@@ -291,10 +294,13 @@ static TML_INT32 getSndStrmCallbackDataFromDict(TML_INT64 iID,
 #ifdef LINUX
   sprintf (sKey, "%" PRId64, iID);
 #else // LINUX
+  char sFormat[5];
+  sFormat[0] = '%'; sFormat[1] = 'l'; sFormat[2] = 'd'; sFormat[3] = '\0';
+  if (sizeof(void*) == 8){ sFormat[2] = 'l'; sFormat[3] = 'd'; sFormat[4] = '\0'; }
   #if _MSC_VER > 1500
-    sprintf_s (sKey, 128, "%" PRId64, iID);
+    sprintf_s (sKey, 128, sFormat, iID);
   #else
-    sprintf (sKey, "%" PRId64, iID);
+    sprintf (sKey, sFormat, iID);
   #endif
 #endif // LINUX
 
@@ -551,10 +557,13 @@ static void removeRecStrmCallbackDataFromDict(SIDEX_VARIANT dict, TML_INT64 iID)
 #ifdef LINUX
   sprintf (sKey, "%" PRId64, iID);
 #else // LINUX
+  char sFormat[5];
+  sFormat[0] = '%'; sFormat[1] = 'l'; sFormat[2] = 'd'; sFormat[3] = '\0';
+  if (sizeof(void*) == 8){ sFormat[2] = 'l'; sFormat[3] = 'd'; sFormat[4] = '\0'; }
   #if _MSC_VER > 1500
-    sprintf_s (sKey, 128, "%" PRId64, iID);
+    sprintf_s (sKey, 128, sFormat, iID);
   #else
-    sprintf (sKey, "%" PRId64, iID);
+    sprintf (sKey, sFormat, iID);
   #endif
 #endif // LINUX
 
@@ -624,10 +633,13 @@ static void removeSndStrmCallbackDataFromDict(SIDEX_VARIANT dict, TML_INT64 iID)
 #ifdef LINUX
   sprintf (sKey, "%" PRId64, iID);
 #else // LINUX
+  char sFormat[5];
+  sFormat[0] = '%'; sFormat[1] = 'l'; sFormat[2] = 'd'; sFormat[3] = '\0';
+  if (sizeof(void*) == 8){ sFormat[2] = 'l'; sFormat[3] = 'd'; sFormat[4] = '\0'; }
   #if _MSC_VER > 1500
-    sprintf_s (sKey, 128, "%" PRId64, iID);
+    sprintf_s (sKey, 128, sFormat, iID);
   #else
-    sprintf (sKey, "%" PRId64, iID);
+    sprintf (sKey, sFormat, iID);
   #endif
 #endif // LINUX
 
