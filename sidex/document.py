@@ -36,6 +36,7 @@
 
 import sidex
 import sidex.variant
+import collections
 
 from sidex.constants import *
 
@@ -64,7 +65,7 @@ from sidex.constants import *
 #
 #  The class emulates a dictionary to simplify access of the key value pairs
 #  in a parameter group.
-class SDXDocumentGroup(object):
+class SDXDocumentGroup(collections.MutableMapping):
 
     ## @brief Constructor
     #
@@ -117,6 +118,17 @@ class SDXDocumentGroup(object):
     def __setitem__(self, key, value):
         self.__sdxdoc.write_value(self.__grpname, sidex.variant.sdx_to_py(key), value)
 
+    ## @brief Return an iterable List of keys from the Groupe
+    #
+    #  @code
+    #  sdoc = sidex.document.SDXDocument('SDXDocTest')
+    #  iter(sdoc['MyGroup'])
+    #  @endcode
+
+    #  @returns [\b SDXListIter] iterator over keys
+    def __iter__(self):
+        return iter(self.keys())
+
     ## @brief Delete a key value pair from the document.
     #
     #  To Deleta a key/value pair from the document the \c del command
@@ -158,14 +170,13 @@ class SDXDocumentGroup(object):
     def has_key(self, name):
         return sidex.sidex_HasKey(self.__sdxdoc.shandle, self.__grpname, sidex.variant.sdx_to_py(name))
 
-
 ## @brief SIDEX document.
 #  @ingroup SDXDocGroup
 #
 #  A SIDEX document can be converted to a SIDEX XML string to be saved as a file or to be send to as a message
 #  to another process or host. If a SIDEX file or string has to be parsed, it is simply loaded into a SIDEX
 #  document that enables type safe access and modification.
-class SDXDocument(object):
+class SDXDocument(collections.MutableMapping):
 
     ## @brief Constructor
     #
@@ -361,6 +372,17 @@ class SDXDocument(object):
     def __str__(self):
         return self.content
 
+    ## @brief Return an iterable List of keys from the SDXDocument
+    #
+    #  @code
+    #  sdoc = sidex.document.SDXDocument('SDXDocTest')
+    #  iter(sdoc)
+    #  @endcode
+
+    #  @returns [\b SDXListIter] iterator over keys
+    def __iter__(self):
+        return iter(self.keys())
+
     ## @brief Write a value to the document.
     #
     #  @param group : [\b str] group name
@@ -408,8 +430,3 @@ class SDXDocument(object):
     #  @sa sidex_HasGroup()
     def has_key(self, name):
         return sidex.sidex_HasGroup(self.__shandle, name)
-
-
-
-
-
